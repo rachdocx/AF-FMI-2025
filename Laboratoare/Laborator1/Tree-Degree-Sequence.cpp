@@ -1,16 +1,12 @@
 #include <iostream>
 #include <vector>
 using namespace std;
-
 int g[101][101];
-
 int main() {
     int n, x;
     cin >> n;
-
     vector<pair<int,int>> d1;
     vector<pair<int,int>> dm;
-
     for (int i = 0; i < n; ++i) {
         cin >> x;
         pair<int,int> temp = {x, i};
@@ -25,18 +21,25 @@ int main() {
         dm[i+1].first--;
     }
     int j = 0;
+    int ok = 1;
     for (int i = 0; i < d1.size(); ++i) {
         while (j < dm.size() && dm[j].first == 0)
             j++;
-        if (j == dm.size())
+        if (j == dm.size()) {
+            ok = 0;
             break;
+        }
         g[d1[i].second][dm[j].second] = g[dm[j].second][d1[i].second] = 1;
         dm[j].first--;
     }
-    for (int i = 0; i < n; ++i) {
-        for (int k = i; k < n; ++k)
-            if (g[i][k] == 1 && g[k][i] == 1)
-                cout<<i+1<<" "<<k+1<<"\n";
+    if (ok == 1) {
+        for (int i = 0; i < n; ++i) {
+            for (int k = i; k < n; ++k)
+                if (g[i][k] == 1)
+                    cout << i+1 << " " << k+1 << "\n";
+        }
+    } else {
+        cout << "Imposibil\n";
     }
     return 0;
 }
