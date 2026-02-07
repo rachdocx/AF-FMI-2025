@@ -18,8 +18,9 @@ Programul afișează pe ecran pe prima linie numărul de cereri pentru care răs
  */
 vector<vector<int>> graf;
 vector<int> viz;
+vector<pair<int, int>> cereri;
 int main() {
-    int n,m;
+    int n,m,c;
     cin >> n >> m;
     graf.resize(n+1);
     viz.assign(n+1, 0);
@@ -29,6 +30,8 @@ int main() {
         graf[x].push_back(y);
         graf[y].push_back(x);
     }
+    cin >> c;
+
 
     return 0;
 }
